@@ -73,7 +73,8 @@ internal interface TestsSchedulerFactory {
                 filterInfoWriter = FilterInfoWriter.Impl(
                     outputDir = params.outputDir,
                     gson = gson
-                )
+                ),
+                loggerFactory = params.loggerFactory
             )
         }
 
