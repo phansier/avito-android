@@ -55,10 +55,10 @@ dependencies {
     testImplementation(Dependencies.Test.mockitoJUnitJupiter)
     testImplementation(Dependencies.Test.okhttpMockWebServer)
 
-    testFixturesApi(project(":common:logger-test-fixtures"))
-    testFixturesApi(project(":common:time-test-fixtures"))
-    testFixturesApi(project(":common:report-viewer-test-fixtures"))
-    testFixturesApi(testFixtures(project(":gradle:runner:device-provider")))
+    testFixturesApi(project(":subprojects:common:logger-test-fixtures"))
+    testFixturesApi(project(":subprojects:common:time-test-fixtures"))
+    testFixturesApi(project(":subprojects:common:report-viewer-test-fixtures"))
+    testFixturesApi(testFixtures(project(":subprojects:gradle:runner:device-provider")))
 }
 
 kotlin {

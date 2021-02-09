@@ -21,7 +21,6 @@ plugins {
     base
     id("org.jetbrains.kotlin.jvm") apply false
     id("com.android.application") apply false
-    id("com.avito.android.build-verdict")
     id("io.gitlab.arturbosch.detekt")
     id("com.autonomousapps.dependency-analysis") apply false
     id("com.jfrog.bintray") version "1.8.4" apply false
