@@ -152,22 +152,6 @@ subprojects {
     }
 
     plugins.withType<KotlinBasePluginWrapper> {
-        dependencies {
-            constraints {
-                add("api", Dependencies.Avito.proxyToast) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.testInhouseRunner) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.testReport) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.junitUtils) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.toastRule) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.testAnnotations) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.uiTestingCore) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.reportViewer) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.fileStorage) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.okhttp) { version { strictly(infraVersion.get()) } }
-                add("api", Dependencies.Avito.time) { version { strictly(infraVersion.get()) } }
-            }
-        }
-
         this@subprojects.run {
             tasks {
                 withType<KotlinCompile> {
