@@ -12,8 +12,8 @@ dependencies {
     implementation(project(":subprojects:gradle:gradle-logger"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
     implementation(project(":subprojects:gradle:slack"))
-    implementation(Dependencies.funktionaleTry)
-    implementation(Dependencies.okhttp)
+//    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.okhttp)
 
     testImplementation(project(":subprojects:gradle:test-project"))
     testImplementation(project(":subprojects:common:report-viewer-test-fixtures"))

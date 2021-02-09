@@ -1,5 +1,7 @@
 @file:Suppress("SpellCheckingInspection")
 
+package com.avito.android
+
 object Dependencies {
 
     object Versions {

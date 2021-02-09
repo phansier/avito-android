@@ -8,5 +8,5 @@ dependencies {
     implementation(project(":subprojects:common:test-okhttp"))
     implementation(project(":subprojects:common:logger-test-fixtures"))
 
-    implementation(Dependencies.Test.junitJupiterApi)
+//    implementation(Dependencies.Test.junitJupiterApi)
 }

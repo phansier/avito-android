@@ -5,5 +5,5 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.gson)
+//    implementation(Dependencies.gson)
 }

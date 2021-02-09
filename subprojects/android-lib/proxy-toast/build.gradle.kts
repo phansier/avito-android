@@ -1,4 +1,5 @@
 plugins {
+    id("com.avito.android.library")
     id("com.android.library")
     id("kotlin-android")
     `maven-publish`
@@ -6,5 +7,5 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.androidAnnotations)
+//    implementation(Dependencies.androidAnnotations)
 }

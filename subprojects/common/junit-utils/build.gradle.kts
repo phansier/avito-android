@@ -5,9 +5,9 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.Test.junit)
-    implementation(Dependencies.Test.truth)
-    implementation(Dependencies.Test.hamcrestLib)
+//    implementation(Dependencies.Test.junit)
+//    implementation(Dependencies.Test.truth)
+//    implementation(Dependencies.Test.hamcrestLib)
 
-    testImplementation(Dependencies.kotlinReflect)
+//    testImplementation(Dependencies.kotlinReflect)
 }

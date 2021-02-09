@@ -18,10 +18,10 @@ dependencies {
     implementation(project(":subprojects:gradle:statsd-config"))
     implementation(project(":subprojects:gradle:teamcity"))
 
-    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.funktionaleTry)
 
-    testImplementation(Dependencies.Test.mockitoKotlin)
-    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
+//    testImplementation(Dependencies.Test.mockitoKotlin)
+//    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
     testImplementation(project(":subprojects:gradle:git"))
     testImplementation(project(":subprojects:gradle:test-project"))
     testImplementation(project(":subprojects:common:graphite-test-fixtures"))

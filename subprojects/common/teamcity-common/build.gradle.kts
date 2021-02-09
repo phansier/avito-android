@@ -5,5 +5,5 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.teamcityClient)
+//    api(Dependencies.teamcityClient)
 }

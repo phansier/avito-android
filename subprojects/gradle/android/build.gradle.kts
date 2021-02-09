@@ -17,7 +17,7 @@ dependencies {
     implementation(project(":subprojects:gradle:process"))
     implementation(project(":subprojects:gradle:gradle-logger"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
-    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.funktionaleTry)
 
     testImplementation(project(":subprojects:gradle:process-test-fixtures"))
 }

@@ -17,13 +17,13 @@ dependencies {
     implementation(project(":subprojects:gradle:sentry-config"))
     implementation(project(":subprojects:gradle:statsd-config"))
 
-    implementation(Dependencies.antPattern)
-    implementation(Dependencies.Gradle.kotlinPlugin)
+//    implementation(Dependencies.antPattern)
+//    implementation(Dependencies.Gradle.kotlinPlugin)
 
     testImplementation(project(":subprojects:gradle:impact-shared-test-fixtures"))
     testImplementation(project(":subprojects:gradle:test-project"))
     testImplementation(project(":subprojects:gradle:git-test-fixtures"))
-    testImplementation(Dependencies.Test.mockitoKotlin)
+//    testImplementation(Dependencies.Test.mockitoKotlin)
 }
 
 gradlePlugin {

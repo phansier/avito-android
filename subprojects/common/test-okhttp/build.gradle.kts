@@ -5,12 +5,12 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.Test.okhttpMockWebServer)
+//    api(Dependencies.Test.okhttpMockWebServer)
     api(project(":subprojects:common:logger"))
 
-    implementation(Dependencies.Test.truth)
-    implementation(Dependencies.gson)
-    implementation(Dependencies.commonsLang)
+//    implementation(Dependencies.Test.truth)
+//    implementation(Dependencies.gson)
+//    implementation(Dependencies.commonsLang)
 
     implementation(project(":subprojects:common:junit-utils"))
     implementation(project(":subprojects:common:resources"))

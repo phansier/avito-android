@@ -7,5 +7,5 @@ plugins {
 dependencies {
     api(project(":subprojects:common:logger"))
 
-    implementation(Dependencies.slf4jApi)
+//    implementation(Dependencies.slf4jApi)
 }

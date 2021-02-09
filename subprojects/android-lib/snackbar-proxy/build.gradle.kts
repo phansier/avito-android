@@ -6,6 +6,6 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.material)
-    implementation(Dependencies.androidAnnotations)
+//    api(Dependencies.material)
+//    implementation(Dependencies.androidAnnotations)
 }

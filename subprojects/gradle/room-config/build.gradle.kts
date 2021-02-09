@@ -8,7 +8,7 @@ plugins {
 dependencies {
     implementation(project(":subprojects:gradle:android"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
-    implementation(Dependencies.Gradle.kotlinPlugin)
+//    implementation(Dependencies.Gradle.kotlinPlugin)
 
     testImplementation(project(":subprojects:gradle:test-project"))
 }

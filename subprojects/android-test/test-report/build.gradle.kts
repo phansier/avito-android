@@ -19,18 +19,18 @@ dependencies {
     implementation(project(":subprojects:android-test:ui-testing-core"))
     implementation(project(":subprojects:android-test:resource-manager-exceptions"))
     implementation(project(":subprojects:android-test:websocket-reporter"))
-    implementation(Dependencies.okio)
-    implementation(Dependencies.kotson)
-    implementation(Dependencies.funktionaleTry)
-    implementation(Dependencies.okhttp)
-    implementation(Dependencies.sentryAndroid) // todo use common:sentry
+//    implementation(Dependencies.okio)
+//    implementation(Dependencies.kotson)
+//    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.okhttp)
+//    implementation(Dependencies.sentryAndroid) // todo use common:sentry
 
     testImplementation(project(":subprojects:common:resources"))
     testImplementation(project(":subprojects:common:junit-utils"))
     testImplementation(project(":subprojects:common:logger-test-fixtures"))
     testImplementation(project(":subprojects:common:time-test-fixtures"))
-    testImplementation(Dependencies.Test.okhttpMock)
-    testImplementation(Dependencies.Test.mockitoKotlin)
-    testImplementation(Dependencies.Test.jsonPathAssert)
+//    testImplementation(Dependencies.Test.okhttpMock)
+//    testImplementation(Dependencies.Test.mockitoKotlin)
+//    testImplementation(Dependencies.Test.jsonPathAssert)
     testImplementation(project(":subprojects:common:truth-extensions"))
 }

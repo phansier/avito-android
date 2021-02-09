@@ -6,9 +6,9 @@ plugins {
 
 dependencies {
     implementation(gradleApi())
-    implementation(Dependencies.okhttp)
-    implementation(Dependencies.okhttpLogging)
-    implementation(Dependencies.gson)
+//    implementation(Dependencies.okhttp)
+//    implementation(Dependencies.okhttpLogging)
+//    implementation(Dependencies.gson)
 
     implementation(project(":subprojects:common:okhttp"))
     implementation(project(":subprojects:gradle:android"))

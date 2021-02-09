@@ -9,9 +9,9 @@ dependencies {
     api(project(":subprojects:android-test:test-instrumentation-runner"))
     api(project(":subprojects:common:junit-utils"))
     api(project(":subprojects:android-test:test-report"))
-    api(Dependencies.sentry) {
-        because("InHouseInstrumentationTestRunner.sentry")
-    }
+//    api(Dependencies.sentry) {
+//        because("InHouseInstrumentationTestRunner.sentry")
+//    }
 
     implementation(project(":subprojects:common:sentry"))
     implementation(project(":subprojects:common:elastic-logger"))
@@ -27,13 +27,13 @@ dependencies {
     implementation(project(":subprojects:android-test:android-log"))
     implementation(project(":subprojects:android-test:ui-testing-core"))
     implementation(project(":subprojects:android-test:ui-testing-maps"))
-    implementation(Dependencies.AndroidTest.runner)
-    implementation(Dependencies.Test.truth)
-    implementation(Dependencies.Test.mockitoKotlin)
-    implementation(Dependencies.okhttpLogging)
-    implementation(Dependencies.Test.okhttpMockWebServer)
-    implementation(Dependencies.gson)
+//    implementation(Dependencies.AndroidTest.runner)
+//    implementation(Dependencies.Test.truth)
+//    implementation(Dependencies.Test.mockitoKotlin)
+//    implementation(Dependencies.okhttpLogging)
+//    implementation(Dependencies.Test.okhttpMockWebServer)
+//    implementation(Dependencies.gson)
 
-    testImplementation(Dependencies.Test.kotlinPoet)
-    testImplementation(Dependencies.Test.kotlinCompileTesting)
+//    testImplementation(Dependencies.Test.kotlinPoet)
+//    testImplementation(Dependencies.Test.kotlinCompileTesting)
 }

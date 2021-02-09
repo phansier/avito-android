@@ -10,7 +10,7 @@ dependencies {
     implementation(project(":subprojects:gradle:pre-build"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
     implementation(project(":subprojects:gradle:impact"))
-    implementation(Dependencies.Gradle.kotlinPlugin)
+//    implementation(Dependencies.Gradle.kotlinPlugin)
 
     testImplementation(project(":subprojects:gradle:test-project"))
 }

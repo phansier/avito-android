@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.Test.okhttpMockWebServer)
+//    api(Dependencies.Test.okhttpMockWebServer)
     api(gradleTestKit())
 
     implementation(project(":subprojects:gradle:process"))
@@ -13,10 +13,10 @@ dependencies {
     implementation(project(":subprojects:common:truth-extensions"))
     implementation(project(":subprojects:common:logger-test-fixtures"))
 
-    implementation(Dependencies.kotlinReflect)
-    implementation(Dependencies.funktionaleTry)
-    implementation(Dependencies.Test.truth)
+//    implementation(Dependencies.kotlinReflect)
+//    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.Test.truth)
 
-    testImplementation(Dependencies.Test.kotlinTest)
-    testImplementation(Dependencies.Test.kotlinTestJUnit)
+//    testImplementation(Dependencies.Test.kotlinTest)
+//    testImplementation(Dependencies.Test.kotlinTestJUnit)
 }

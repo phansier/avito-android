@@ -3,9 +3,9 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.kubernetesClient)
+//    api(Dependencies.kubernetesClient)
     api(project(":subprojects:common:teamcity-common"))
-    api(Dependencies.kotlinXCli)
+//    api(Dependencies.kotlinXCli)
 }
 
 // todo add if ci

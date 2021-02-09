@@ -5,16 +5,16 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.okhttp)
+//    api(Dependencies.okhttp)
 
     implementation(project(":subprojects:common:logger"))
-    implementation(Dependencies.okhttpLogging)
+//    implementation(Dependencies.okhttpLogging)
 
     testImplementation(project(":subprojects:common:test-okhttp"))
     testImplementation(project(":subprojects:common:logger-test-fixtures"))
-    testImplementation(Dependencies.funktionaleTry)
-    testImplementation(Dependencies.retrofit)
-    testImplementation(Dependencies.retrofitConverterGson)
+//    testImplementation(Dependencies.funktionaleTry)
+//    testImplementation(Dependencies.retrofit)
+//    testImplementation(Dependencies.retrofitConverterGson)
 }
 
 kotlin {

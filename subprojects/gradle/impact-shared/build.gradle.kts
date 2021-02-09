@@ -5,9 +5,9 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.funktionaleTry) {
-        because("Try<> is in ABI")
-    }
+//    api(Dependencies.funktionaleTry) {
+//        because("Try<> is in ABI")
+//    }
 
     implementation(gradleApi())
 
@@ -17,12 +17,12 @@ dependencies {
     implementation(project(":subprojects:gradle:gradle-extensions"))
     implementation(project(":subprojects:gradle:process"))
 
-    implementation(Dependencies.antPattern)
-    implementation(Dependencies.Gradle.kotlinPlugin)
+//    implementation(Dependencies.antPattern)
+//    implementation(Dependencies.Gradle.kotlinPlugin)
 
     testImplementation(project(":subprojects:gradle:git-test-fixtures"))
     testImplementation(project(":subprojects:gradle:test-project"))
     testImplementation(project(":subprojects:common:logger-test-fixtures"))
 
-    testImplementation(Dependencies.Test.mockitoKotlin)
+//    testImplementation(Dependencies.Test.mockitoKotlin)
 }

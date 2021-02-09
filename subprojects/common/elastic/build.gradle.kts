@@ -5,15 +5,15 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.okhttp)
+//    api(Dependencies.okhttp)
 
     implementation(project(":subprojects:common:time"))
     implementation(project(":subprojects:common:okhttp"))
     implementation(project(":subprojects:common:slf4j-logger"))
 
-    implementation(Dependencies.gson)
-    implementation(Dependencies.retrofit)
-    implementation(Dependencies.retrofitConverterGson)
+//    implementation(Dependencies.gson)
+//    implementation(Dependencies.retrofit)
+//    implementation(Dependencies.retrofitConverterGson)
 
     testImplementation(project(":subprojects:common:test-okhttp"))
     testImplementation(project(":subprojects:common:time-test-fixtures"))

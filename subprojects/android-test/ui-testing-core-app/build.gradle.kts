@@ -13,6 +13,17 @@ plugins {
     id("com.avito.android.instrumentation-tests")
 }
 
+buildscript {
+    configurations.classpath {
+        resolutionStrategy {
+//            failOnVersionConflict()
+
+//            force(Dependencies.okio)
+//            force(Dependencies.okhttp)
+        }
+    }
+}
+
 android {
 
     defaultConfig {
@@ -55,25 +66,25 @@ android {
 dependencies(
     delegateClosureOf<DependencyHandler> {
 
-        implementation(Dependencies.appcompat)
-        implementation(Dependencies.material)
-        implementation(Dependencies.playServicesMaps)
-        implementation(Dependencies.recyclerView)
+//        implementation(Dependencies.appcompat)
+//        implementation(Dependencies.material)
+//        implementation(Dependencies.playServicesMaps)
+//        implementation(Dependencies.recyclerView)
 
         implementation(project(":subprojects:android-lib:proxy-toast"))
 
-        androidTestImplementation(Dependencies.AndroidTest.rules)
-        androidTestImplementation(Dependencies.AndroidTest.runner)
-        androidTestImplementation(Dependencies.funktionaleTry)
-        androidTestImplementation(Dependencies.gson)
-        androidTestImplementation(Dependencies.kotson)
-        androidTestImplementation(Dependencies.okhttp)
-        androidTestImplementation(Dependencies.okhttpLogging)
-        androidTestImplementation(Dependencies.sentry)
-        androidTestImplementation(Dependencies.Test.junit)
-        androidTestImplementation(Dependencies.Test.mockitoCore)
-        androidTestImplementation(Dependencies.Test.okhttpMockWebServer)
-        androidTestImplementation(Dependencies.Test.truth)
+//        androidTestImplementation(Dependencies.AndroidTest.rules)
+//        androidTestImplementation(Dependencies.AndroidTest.runner)
+//        androidTestImplementation(Dependencies.funktionaleTry)
+//        androidTestImplementation(Dependencies.gson)
+//        androidTestImplementation(Dependencies.kotson)
+//        androidTestImplementation(Dependencies.okhttp)
+//        androidTestImplementation(Dependencies.okhttpLogging)
+//        androidTestImplementation(Dependencies.sentry)
+//        androidTestImplementation(Dependencies.Test.junit)
+//        androidTestImplementation(Dependencies.Test.mockitoCore)
+//        androidTestImplementation(Dependencies.Test.okhttpMockWebServer)
+//        androidTestImplementation(Dependencies.Test.truth)
 
         androidTestImplementation(project(":subprojects:android-test:test-inhouse-runner"))
         androidTestImplementation(project(":subprojects:android-test:test-report"))
@@ -86,7 +97,7 @@ dependencies(
         androidTestImplementation(project(":subprojects:common:test-annotations"))
         androidTestImplementation(project(":subprojects:common:time"))
 
-        androidTestUtil(Dependencies.AndroidTest.orchestrator)
+//        androidTestUtil(Dependencies.AndroidTest.orchestrator)
     }
 )
 

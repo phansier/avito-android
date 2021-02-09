@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.appcompat)
-    api(Dependencies.androidAnnotations)
-    implementation(Dependencies.Test.mockitoCore)
+//    api(Dependencies.appcompat)
+//    api(Dependencies.androidAnnotations)
+//    implementation(Dependencies.Test.mockitoCore)
     implementation(project(":subprojects:android-test:test-inhouse-runner"))
     implementation(project(":subprojects:android-test:ui-testing-core"))
     implementation(project(":subprojects:common:logger"))

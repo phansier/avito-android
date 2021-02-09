@@ -9,5 +9,5 @@ dependencies {
     implementation(project(":subprojects:gradle:gradle-extensions"))
     implementation(project(":subprojects:gradle:gradle-logger"))
     implementation(gradleApi())
-    implementation(Dependencies.googlePublish)
+//    implementation(Dependencies.googlePublish)
 }

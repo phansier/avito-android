@@ -9,8 +9,8 @@ dependencies {
     implementation(project(":subprojects:gradle:process"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
     implementation(project(":subprojects:gradle:gradle-logger"))
-    implementation(Dependencies.funktionaleTry)
-    implementation(Dependencies.gson)
+//    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.gson)
 
     testImplementation(project(":subprojects:common:logger-test-fixtures"))
     testImplementation(project(":subprojects:gradle:test-project"))

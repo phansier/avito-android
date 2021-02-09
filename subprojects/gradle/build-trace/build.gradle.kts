@@ -13,8 +13,8 @@ dependencies {
     implementation(project(":subprojects:gradle:build-environment"))
     implementation(gradleApi())
 
-    testImplementation(Dependencies.Test.mockitoKotlin)
-    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
+//    testImplementation(Dependencies.Test.mockitoKotlin)
+//    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
     testImplementation(project(":subprojects:gradle:test-project"))
 }
 

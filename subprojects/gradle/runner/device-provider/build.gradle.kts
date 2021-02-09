@@ -15,7 +15,7 @@ dependencies {
     api(project(":subprojects:gradle:runner:stub"))
     api(project(":subprojects:gradle:kubernetes"))
 
-    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.funktionaleTry)
     implementation(project(":subprojects:gradle:process"))
     implementation(project(":subprojects:common:logger"))
 

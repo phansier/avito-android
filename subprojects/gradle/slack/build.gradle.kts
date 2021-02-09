@@ -6,13 +6,13 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.funktionaleTry)
+//    api(Dependencies.funktionaleTry)
 
     implementation(project(":subprojects:gradle:gradle-logger"))
     implementation(project(":subprojects:common:time"))
-    implementation(Dependencies.slackClient) { exclude(group = "com.squareup.okhttp3") }
-    implementation(Dependencies.okhttp)
-    implementation(Dependencies.coroutinesCore)
+//    implementation(Dependencies.slackClient) { exclude(group = "com.squareup.okhttp3") }
+//    implementation(Dependencies.okhttp)
+//    implementation(Dependencies.coroutinesCore)
 
     integTestImplementation(project(":subprojects:gradle:gradle-extensions"))
 

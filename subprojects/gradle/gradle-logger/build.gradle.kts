@@ -16,7 +16,7 @@ dependencies {
     implementation(project(":subprojects:common:sentry-logger"))
     implementation(project(":subprojects:common:slf4j-logger"))
 
-    testImplementation(Dependencies.Test.junitJupiterApi)
-    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
-    testImplementation(Dependencies.Test.truth)
+//    testImplementation(Dependencies.Test.junitJupiterApi)
+//    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
+//    testImplementation(Dependencies.Test.truth)
 }

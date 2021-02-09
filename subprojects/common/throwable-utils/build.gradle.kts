@@ -5,6 +5,6 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.commonsText)
-    testImplementation(Dependencies.Test.truth)
+//    implementation(Dependencies.commonsText)
+//    testImplementation(Dependencies.Test.truth)
 }

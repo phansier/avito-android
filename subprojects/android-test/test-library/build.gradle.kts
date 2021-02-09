@@ -26,9 +26,9 @@ android {
 dependencies(
     delegateClosureOf<DependencyHandler> {
 
-        implementation(Dependencies.appcompat)
+//        implementation(Dependencies.appcompat)
 
         androidTestImplementation(project(":subprojects:android-test:ui-testing-core"))
-        androidTestUtil(Dependencies.AndroidTest.orchestrator)
+//        androidTestUtil(Dependencies.AndroidTest.orchestrator)
     }
 )

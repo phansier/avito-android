@@ -12,8 +12,8 @@ dependencies {
     implementation(project(":subprojects:common:report-viewer"))
     implementation(project(":subprojects:common:time"))
 
-    implementation(Dependencies.gson)
-    implementation(Dependencies.kotson)
+//    implementation(Dependencies.gson)
+//    implementation(Dependencies.kotson)
 
     testImplementation(project(":subprojects:gradle:test-project"))
 }

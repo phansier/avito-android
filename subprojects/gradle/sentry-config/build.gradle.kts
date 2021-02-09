@@ -12,5 +12,5 @@ dependencies {
     implementation(project(":subprojects:common:logger"))
     implementation(project(":subprojects:gradle:git"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
-    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.funktionaleTry)
 }

@@ -12,16 +12,18 @@ dependencies {
     api(project(":subprojects:common:time"))
     api(project(":subprojects:gradle:build-verdict-tasks-api"))
 
-    implementation(Dependencies.commonsIo) {
-        because("LogcatBuffer.Impl.tailer needs to consider Charset (https://issues.apache.org/jira/browse/IO-354)")
-    }
-    implementation(Dependencies.commonsText)
-    implementation(Dependencies.coroutinesCore)
-    implementation(Dependencies.funktionaleTry)
-    implementation(Dependencies.gson)
-    implementation(Dependencies.kotson)
-    implementation(Dependencies.retrofit)
-    implementation(Dependencies.teamcityClient)
+//    implementation(Dependencies.commonsIo) {
+//        because("LogcatBuffer.Impl.tailer needs to consider Charset (https://issues.apache.org/jira/browse/IO-354)")
+//    }
+//    implementation(Dependencies.commonsText)
+//    implementation(Dependencies.coroutinesCore)
+//    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.okhttp)
+//    implementation(Dependencies.okio)
+//    implementation(Dependencies.gson)
+//    implementation(Dependencies.kotson)
+//    implementation(Dependencies.retrofit)
+//    implementation(Dependencies.teamcityClient)
     implementation(project(":subprojects:common:composite-exception"))
     implementation(project(":subprojects:common:file-storage"))
     implementation(project(":subprojects:common:logger"))
@@ -51,9 +53,9 @@ dependencies {
     testImplementation(project(":subprojects:gradle:build-failer-test-fixtures"))
     testImplementation(project(":subprojects:gradle:instrumentation-tests-dex-loader-test-fixtures"))
     testImplementation(project(":subprojects:common:resources"))
-    testImplementation(Dependencies.Test.mockitoKotlin)
-    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
-    testImplementation(Dependencies.Test.okhttpMockWebServer)
+//    testImplementation(Dependencies.Test.mockitoKotlin)
+//    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
+//    testImplementation(Dependencies.Test.okhttpMockWebServer)
 
     testFixturesApi(project(":subprojects:common:logger-test-fixtures"))
     testFixturesApi(project(":subprojects:common:time-test-fixtures"))

@@ -9,9 +9,9 @@ plugins {
 dependencies {
     api(project(":subprojects:gradle:build-verdict-tasks-api"))
 
-    implementation(Dependencies.funktionaleTry)
-    implementation(Dependencies.kotlinHtml)
-    implementation(Dependencies.okhttp)
+//    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.kotlinHtml)
+//    implementation(Dependencies.okhttp)
 
     implementation(project(":subprojects:common:okhttp"))
     implementation(project(":subprojects:common:sentry"))

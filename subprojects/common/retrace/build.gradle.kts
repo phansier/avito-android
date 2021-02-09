@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.proguardRetrace)
+//    implementation(Dependencies.proguardRetrace)
 
-    testImplementation(Dependencies.Test.junit)
+//    testImplementation(Dependencies.Test.junit)
 }

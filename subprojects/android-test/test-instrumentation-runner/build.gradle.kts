@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.AndroidTest.runner)
-    implementation(Dependencies.AndroidTest.uiAutomator)
+//    api(Dependencies.AndroidTest.runner)
+//    implementation(Dependencies.AndroidTest.uiAutomator)
     implementation(project(":subprojects:common:logger"))
 }

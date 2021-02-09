@@ -14,9 +14,9 @@ dependencies {
     implementation(project(":subprojects:gradle:android"))
     implementation(project(":subprojects:common:files"))
 
-    implementation(Dependencies.funktionaleTry)
-    implementation(Dependencies.okhttp)
-    implementation(Dependencies.okhttpLogging)
+//    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.okhttp)
+//    implementation(Dependencies.okhttpLogging)
 
     testImplementation(project(":subprojects:gradle:test-project"))
     testImplementation(project(":subprojects:common:test-okhttp"))

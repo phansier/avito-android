@@ -11,9 +11,9 @@ dependencies {
     implementation(project(":subprojects:gradle:gradle-extensions"))
     implementation(project(":subprojects:common:okhttp"))
 
-    implementation(Dependencies.retrofit)
-    implementation(Dependencies.retrofitConverterGson)
-    implementation(Dependencies.okhttpLogging)
+//    implementation(Dependencies.retrofit)
+//    implementation(Dependencies.retrofitConverterGson)
+//    implementation(Dependencies.okhttpLogging)
 
     testImplementation(project(":subprojects:gradle:test-project"))
     testImplementation(project(":subprojects:common:test-okhttp"))

@@ -1,5 +1,9 @@
 rootProject.name = "avito-android-infra"
 
+includeBuild("libraries")
+includeBuild("platform")
+includeBuild("build-logic")
+
 include(":subprojects:gradle:artifactory-app-backup")
 include(":subprojects:gradle:artifactory-app-backup-test-fixtures")
 include(":subprojects:gradle:buildchecks")
@@ -318,19 +322,19 @@ dependencyResolutionManagement {
     }
 }
 
-plugins {
-    id("com.gradle.enterprise") version "3.5.1"
-}
+//plugins {
+//    id("com.gradle.enterprise") version "3.5.1"
+//}
 
 val isCI = booleanProperty("ci", false)
 
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-        publishOnFailureIf(isCI)
-    }
-}
+//gradleEnterprise {
+//    buildScan {
+//        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+//        termsOfServiceAgree = "yes"
+//        publishOnFailureIf(isCI)
+//    }
+//}
 
 fun booleanProperty(name: String, defaultValue: Boolean): Boolean {
     return if (settings.extra.has(name)) {

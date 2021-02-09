@@ -14,9 +14,9 @@ dependencies {
     implementation(project(":subprojects:common:logger"))
     implementation(project(":subprojects:common:slf4j-logger"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
-    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.funktionaleTry)
 
     testImplementation(project(":subprojects:gradle:test-project"))
     testImplementation(project(":subprojects:common:logger-test-fixtures"))
-    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
+//    testImplementation(Dependencies.Test.mockitoJUnitJupiter)
 }

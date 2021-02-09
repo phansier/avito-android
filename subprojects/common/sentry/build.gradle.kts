@@ -5,5 +5,5 @@ plugins {
 }
 
 dependencies {
-    api(Dependencies.sentry)
+//    api(Dependencies.sentry)
 }

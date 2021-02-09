@@ -11,7 +11,7 @@ dependencies {
     implementation(project(":subprojects:gradle:gradle-logger"))
     implementation(project(":subprojects:gradle:runner:service"))
     implementation(project(":subprojects:gradle:runner:shared"))
-    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.funktionaleTry)
 
     testImplementation(project(":subprojects:gradle:test-project"))
 }

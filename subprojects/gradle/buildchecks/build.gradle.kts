@@ -16,8 +16,8 @@ dependencies {
     implementation(project(":subprojects:common:files"))
     implementation(project(":subprojects:gradle:statsd-config"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
-    implementation(Dependencies.Gradle.kotlinPlugin)
-    implementation(Dependencies.funktionaleTry)
+//    implementation(Dependencies.Gradle.kotlinPlugin)
+//    implementation(Dependencies.funktionaleTry)
 
     // for test
     implementation(project(":subprojects:gradle:module-types"))

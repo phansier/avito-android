@@ -6,8 +6,8 @@ plugins {
 }
 
 dependencies {
-    implementation(Dependencies.androidAnnotations)
-    implementation(Dependencies.Test.junit)
+//    implementation(Dependencies.androidAnnotations)
+//    implementation(Dependencies.Test.junit)
 
     implementation(project(":subprojects:android-lib:proxy-toast"))
     implementation(project(":subprojects:android-test:ui-testing-core"))

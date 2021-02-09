@@ -11,8 +11,8 @@ dependencies {
     implementation(project(":subprojects:common:throwable-utils"))
     implementation(project(":subprojects:gradle:gradle-extensions"))
     implementation(project(":subprojects:gradle:gradle-logger"))
-    implementation(Dependencies.gson)
-    implementation(Dependencies.kotlinHtml)
+//    implementation(Dependencies.gson)
+//    implementation(Dependencies.kotlinHtml)
     testImplementation(project(":subprojects:gradle:test-project"))
 }
 
