@@ -18,6 +18,8 @@ dependencies {
     implementation(project(":subprojects:gradle:statsd-config"))
     implementation(project(":subprojects:gradle:teamcity"))
 
+    implementation("com.cdsap.talaiot:talaiot:1.4.1")
+
     implementation(Dependencies.funktionaleTry)
 
     testImplementation(Dependencies.Test.mockitoKotlin)

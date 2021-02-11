@@ -39,7 +39,15 @@ class BuildMetricsPluginTest {
             name = rootAppName,
             plugins = plugins {
                 id("com.avito.android.build-metrics")
+                id("com.cdsap.talaiot").version("1.4.1")
             },
+            buildGradleExtra = """
+                talaiot {
+                    publishers {
+                        customPublishers += new com.avito.android.plugin.build_metrics.CustomPublisher()
+                    }
+                }
+            """.trimIndent(),
             modules = listOf(
                 AndroidAppModule(name = "app")
             )
@@ -174,8 +182,7 @@ class BuildMetricsPluginTest {
             "-Pavito.stats.fallbackHost=http://stats",
             "-Pavito.stats.port=80",
             "-Pavito.stats.namespace=android",
-            "--debug", // to read sentry logs from stdout
-            dryRun = dryRun
+            dryRun = dryRun,
         )
     }
 }
