@@ -5,7 +5,9 @@ plugins {
 @Suppress("UnstableApiUsage")
 val artifactoryUrl: Provider<String> = providers.gradleProperty("artifactoryUrl").forUseAtConfigurationTime()
 
-val publishToArtifactoryTask = tasks.register<Task>("publishToArtifactory") {
+val bomBuild = gradle.includedBuild("platforms")
+
+tasks.register<Task>("publishToArtifactory") {
     group = "publication"
     doFirst {
         requireNotNull(artifactoryUrl.orNull) {
@@ -16,6 +18,12 @@ val publishToArtifactoryTask = tasks.register<Task>("publishToArtifactory") {
     if (!artifactoryUrl.orNull.isNullOrBlank()) {
         dependsOn(tasks.named("publishAllPublicationsToArtifactoryRepository"))
     }
+
+    dependsOn(bomBuild.task(":publishAllPublicationsToArtifactoryRepository"))
+}
+
+tasks.named("publishToMavenLocal") {
+    dependsOn(bomBuild.task(":publishToMavenLocal"))
 }
 
 publishing {

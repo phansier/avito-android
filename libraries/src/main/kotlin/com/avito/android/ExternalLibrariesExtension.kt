@@ -28,6 +28,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
     val detektVersion = systemProperty("detektVersion").get()
     val bintrayVersion = systemProperty("bintrayVersion").get()
     val nebulaIntegTestVersion = systemProperty("nebulaIntegTestVersion").get()
+    val okhttpVersion = "4.9.0"
 
     /**
      * We use exact version to provide consistent environment and avoid build cache issues
@@ -37,6 +38,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
 
     val androidGradlePluginVersion = systemProperty("androidGradlePluginVersion").get()
 
+    val kotlinBom = "org.jetbrains.kotlin:kotlin-bom"
     val kotlinXCli = "org.jetbrains.kotlinx:kotlinx-cli:0.2.1"
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib"
     val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect"
@@ -46,9 +48,10 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     val retrofitConverterScalars = "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
+    val okhttpBom = "com.squareup.okhttp3:okhttp-bom:${Versions.okhttp}"
     val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
-    val okio = "com.squareup.okio:okio:2.7.0"
+    val okio = "com.squareup.okio:okio"
     val funktionaleTry = "org.funktionale:funktionale-try:1.2"
     val gson = "com.google.code.gson:gson:2.8.5"
     val kotson = "com.github.salomonbrys.kotson:kotson:2.5.0"

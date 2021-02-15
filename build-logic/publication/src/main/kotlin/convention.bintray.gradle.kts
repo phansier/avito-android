@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import com.jfrog.bintray.gradle.BintrayExtension.PackageConfig
 import com.jfrog.bintray.gradle.BintrayExtension.VersionConfig
 
@@ -6,17 +8,18 @@ plugins {
     id("convention.publish")
 }
 
-@Suppress("UnstableApiUsage")
-val projectVersion: Provider<String> = providers.gradleProperty("projectVersion").forUseAtConfigurationTime()
-
-val publishReleaseTaskName = "publishRelease"
-
-val finalProjectVersion: String = System.getProperty("avito.project.version").let { env ->
-    if (env.isNullOrBlank()) projectVersion.get() else env
-}
+val projectVersion: Provider<String> =
+    providers.systemProperty("avito.project.version")
+        .forUseAtConfigurationTime()
+        .orElse(
+            providers.systemProperty("projectVersion")
+                .forUseAtConfigurationTime()
+        )
 
 group = "com.avito.android"
-version = finalProjectVersion
+version = projectVersion.get()
+
+val publishReleaseTaskName = "publishRelease"
 
 /**
  * https://www.jetbrains.com/help/teamcity/build-script-interaction-with-teamcity.html#BuildScriptInteractionwithTeamCity-ReportingBuildNumber
@@ -26,7 +29,7 @@ val teamcityPrintVersionTask: TaskProvider<Task> = tasks.register("teamcityPrint
     description = "Prints teamcity service message to display released version as build number"
 
     doLast {
-        logger.lifecycle("##teamcity[buildNumber '$finalProjectVersion']")
+        logger.lifecycle("##teamcity[buildNumber '${projectVersion.get()}']")
     }
 }
 
@@ -35,11 +38,14 @@ tasks.register(publishReleaseTaskName) {
     finalizedBy(teamcityPrintVersionTask)
 }
 
+val bomBuild = gradle.includedBuild("platforms")
+
 afterEvaluate {
     val registeredPublications = publishing.publications.names
 
     tasks.named(publishReleaseTaskName).configure {
         dependsOn(tasks.named("bintrayUpload"))
+        dependsOn(bomBuild.task(":bintrayUpload"))
     }
 
     bintray {
@@ -69,7 +75,7 @@ afterEvaluate {
 
                 version(
                     closureOf<VersionConfig> {
-                        name = finalProjectVersion
+                        name = projectVersion.get()
                     }
                 )
             }

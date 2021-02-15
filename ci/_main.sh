@@ -78,8 +78,8 @@ GRADLE_ARGS="-PartifactoryUrl=$ARTIFACTORY_URL \\
              -Davito.project.version=$PROJECT_VERSION \\
              -Pavito.artifactory.user=$ARTIFACTORY_USER \\
              -Pavito.artifactory.password=$ARTIFACTORY_PASSWORD \\
-             -Pavito.bintray.user=$BINTRAY_USER \\
-             -Pavito.bintray.key=$BINTRAY_API_KEY \\
+             -Davito.bintray.user=$BINTRAY_USER \\
+             -Davito.bintray.key=$BINTRAY_API_KEY \\
              -Pavito.slack.test.channel=$SLACK_TEST_CHANNEL \\
              -Pavito.slack.test.token=$SLACK_TEST_TOKEN \\
              -Pavito.slack.test.workspace=$SLACK_TEST_WORKSPACE \\

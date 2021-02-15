@@ -71,10 +71,10 @@ clean:
 	rm -rf `find -type d -name build`
 
 publish_to_maven_local:
-	./gradlew publishToMavenLocal -PprojectVersion=local $(log_level)
+	./gradlew publishToMavenLocal -DprojectVersion=local $(log_level)
 
 publish_to_artifactory:
-	./gradlew publishToArtifactory -PprojectVersion=$(version) $(log_level)
+	./gradlew publishToArtifactory -DprojectVersion=$(version) $(log_level)
 
 # precondition:
 # - installed CLI: https://cli.github.com/

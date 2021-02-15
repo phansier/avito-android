@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    add("implementation", platform("com.avito.android.infra:platforms"))
+    add("implementation", platform("com.avito.android:infra-bom"))
 }
 
 tasks.withType<KotlinCompile>().configureEach {
