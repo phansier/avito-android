@@ -57,7 +57,7 @@ afterEvaluate {
         //   (https://github.com/bintray/gradle-bintray-plugin/issues/325)
         // - Could not upload to 'https://api.bintray.com/...':
         //   HTTP/1.1 405 Not Allowed 405 Not Allowed405 Not Allowednginx
-        override = true
+        override = false
 
         pkg(
             closureOf<PackageConfig> {
