@@ -20,8 +20,6 @@ class LocalRunTransport(
     private val reportsApi: ReportsApi
 ) : Transport, PreTransportMappers {
 
-    private val localBuildId: String? = null
-
     private val reportViewer: ReportViewer = ReportViewer.Impl(reportViewerUrl)
 
     override fun send(state: ReportState.Initialized.Started) {
@@ -59,7 +57,6 @@ class LocalRunTransport(
 
             val result = reportsApi.addTest(
                 reportCoordinates = reportCoordinates,
-                buildId = localBuildId,
                 test = AndroidTest.Completed.create(
                     testStaticData = testStaticData,
                     testRuntimeData = TestRuntimeDataPackage(

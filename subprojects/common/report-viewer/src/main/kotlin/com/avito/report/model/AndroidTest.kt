@@ -6,9 +6,7 @@ import com.avito.android.test.annotations.TestCasePriority
 sealed class AndroidTest : TestStaticData {
 
     /**
-     * Тест должен быть запущен, или даже запускался,
-     * но мы не смогли собрать его артефакты или упали во время их парсинга.
-     * Такой тест ближе всего к Failed, но мы хотим различать их
+     * Test should be running, or even run, but we can't get required artifacts, or parse it
      */
     class Lost(
         override val name: TestName,

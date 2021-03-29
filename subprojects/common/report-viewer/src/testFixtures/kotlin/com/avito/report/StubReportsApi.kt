@@ -2,6 +2,7 @@ package com.avito.report
 
 import com.avito.android.Result
 import com.avito.report.model.AndroidTest
+import com.avito.report.model.BuildId
 import com.avito.report.model.CreateResult
 import com.avito.report.model.CrossDeviceSuite
 import com.avito.report.model.GetReportResult
@@ -38,14 +39,14 @@ class StubReportsApi(
     @Synchronized
     override fun create(
         reportCoordinates: ReportCoordinates,
-        buildId: String,
+        buildId: BuildId,
         testHost: String,
         gitBranch: String,
         gitCommit: String,
         tmsBranch: String
     ): CreateResult = createResult
 
-    override fun addTest(reportCoordinates: ReportCoordinates, buildId: String?, test: AndroidTest): Result<String> {
+    override fun addTest(reportCoordinates: ReportCoordinates, test: AndroidTest): Result<String> {
         TODO("not implemented")
     }
 
@@ -59,7 +60,7 @@ class StubReportsApi(
 
     override fun addTests(
         reportCoordinates: ReportCoordinates,
-        buildId: String?,
+        buildId: BuildId,
         tests: Collection<AndroidTest>
     ): Result<List<String>> {
         addTestsRequests.add(AddTestsRequest(reportCoordinates, buildId, tests))
@@ -126,7 +127,7 @@ class StubReportsApi(
 
     data class AddTestsRequest(
         val reportCoordinates: ReportCoordinates,
-        val buildId: String?,
+        val buildId: BuildId,
         val tests: Collection<AndroidTest>
     )
 }

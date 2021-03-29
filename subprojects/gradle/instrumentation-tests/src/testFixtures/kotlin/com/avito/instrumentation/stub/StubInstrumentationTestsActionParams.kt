@@ -11,6 +11,7 @@ import com.avito.instrumentation.internal.InstrumentationTestsAction
 import com.avito.instrumentation.internal.executing.ExecutionParameters
 import com.avito.instrumentation.internal.suite.filter.ImpactAnalysisResult
 import com.avito.logger.LoggerFactory
+import com.avito.report.model.BuildId
 import com.avito.report.model.ReportCoordinates
 import com.avito.report.model.createStubInstance
 import com.avito.utils.gradle.KubernetesCredentials
@@ -22,7 +23,7 @@ internal fun InstrumentationTestsAction.Params.Companion.createStubInstance(
     instrumentationConfiguration: InstrumentationConfiguration.Data =
         InstrumentationConfiguration.Data.createStubInstance(),
     executionParameters: ExecutionParameters = ExecutionParameters.createStubInstance(),
-    buildId: String = "33456",
+    buildId: BuildId = BuildId.Local,
     buildType: String = "teamcity",
     kubernetesCredentials: KubernetesCredentials = KubernetesCredentials.Service(
         token = "empty",
@@ -45,7 +46,7 @@ internal fun InstrumentationTestsAction.Params.Companion.createStubInstance(
     testApk = testApk,
     instrumentationConfiguration = instrumentationConfiguration,
     executionParameters = executionParameters,
-    buildId = buildId,
+    buildId = buildId.toString(),
     buildType = buildType,
     kubernetesCredentials = kubernetesCredentials,
     projectName = projectName,

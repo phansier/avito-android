@@ -8,6 +8,7 @@ import com.avito.report.internal.model.RfcRpcRequest
 import com.avito.report.internal.model.RpcResult
 import com.avito.report.internal.model.TestStatus
 import com.avito.report.model.AndroidTest
+import com.avito.report.model.BuildId
 import com.avito.report.model.Flakiness
 import com.avito.report.model.Incident
 import com.avito.report.model.ReportCoordinates
@@ -16,19 +17,16 @@ import com.avito.report.model.Step
 import com.avito.report.model.Video
 import com.avito.report.model.team
 
-internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProvider) : ReportsAddApi {
+internal class ReportsAddApiImpl(
+    private val requestProvider: JsonRpcRequestProvider
+) : ReportsAddApi {
 
     /**
-     * status
-     * buildId null означает локальную сборку, значения в create недостаточно, потому что новые билды могут писать
-     *         в тот же отчет и нужно сохранить знание о новых  buildId
-     *         todo продумать способ не гонять лишние байты с каждым тестом
-     *
-     * @return todo id вместо string
+     * buildId value passed in create test run not enough, because new builds can write in old reports
      */
     override fun addTests(
         reportCoordinates: ReportCoordinates,
-        buildId: String?,
+        buildId: BuildId,
         tests: Collection<AndroidTest>
     ): Result<List<String>> {
         return Result.tryCatch {
@@ -46,8 +44,8 @@ internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProv
                         startTime = null,
                         endTime = null,
                         dataSetData = null,
-                        preconditionList = emptyList(), // todo в теории можем достать проанализировав код теста,
-                        stepList = emptyList() // todo в теории можем достать проанализировав код теста
+                        preconditionList = getStepsWithoutRuntimeData(),
+                        stepList = getStepsWithoutRuntimeData()
                     )
                     is AndroidTest.Lost -> createAddFullRequest(
                         reportCoordinates = reportCoordinates,
@@ -61,8 +59,8 @@ internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProv
                         startTime = test.startTime,
                         endTime = test.lastSignalTime,
                         dataSetData = null,
-                        preconditionList = emptyList(), // todo в теории можем достать проанализировав код теста,
-                        stepList = emptyList() // todo в теории можем достать проанализировав код теста
+                        preconditionList = getStepsWithoutRuntimeData(),
+                        stepList = getStepsWithoutRuntimeData()
                     )
                     is AndroidTest.Completed -> createAddFullRequest(
                         reportCoordinates = reportCoordinates,
@@ -92,14 +90,16 @@ internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProv
         }
     }
 
-    override fun addTest(reportCoordinates: ReportCoordinates, buildId: String?, test: AndroidTest): Result<String> {
-        return addTests(reportCoordinates, buildId, listOf(test)).map { it.first() }
+    override fun addTest(
+        reportCoordinates: ReportCoordinates,
+        test: AndroidTest
+    ): Result<String> {
+        return addTests(reportCoordinates, BuildId.Local, listOf(test)).map { it.first() }
     }
 
-    // todo use only AndroidTest
     private fun createAddFullRequest(
         reportCoordinates: ReportCoordinates,
-        buildId: String?,
+        buildId: BuildId,
         test: AndroidTest,
         status: Status?,
         stdout: String,
@@ -166,7 +166,10 @@ internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProv
             }
         }
 
-        if (!buildId.isNullOrBlank()) preparedData["tc_build"] = buildId
+        if (buildId is BuildId.CI) {
+            preparedData["tc_build"] = buildId.value
+            reportData["build_id_set"] = mapOf("\$fillSet" to listOf(buildId.value))
+        }
 
         val externalId = test.externalId
         if (!externalId.isNullOrBlank()) {
@@ -192,10 +195,6 @@ internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProv
             messageList.add(status.reason)
         }
 
-        if (!buildId.isNullOrBlank()) {
-            reportData["build_id_set"] = mapOf("\$fillSet" to listOf(buildId))
-        }
-
         when (val flakiness = test.flakiness) {
             is Flakiness.Flaky -> {
                 preparedData["is_flaky"] = true
@@ -211,8 +210,6 @@ internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProv
             "run_id" to reportCoordinates.runId,
             "environment" to test.device.name,
             "report" to report,
-            // тут происходит магия "с помощью оператора добавляется в массив новое значение билда"
-            // todo узнать у Жени как можно это лучше сделать
             "report_data" to reportData,
             // todo onlyIf present
             "console" to mapOf(
@@ -244,5 +241,13 @@ internal class ReportsAddApiImpl(private val requestProvider: JsonRpcRequestProv
             Status.Manual -> TestStatus.MANUAL
             Status.Lost -> TestStatus.LOST
         }
+    }
+
+    /**
+     * Not possible at this moment,
+     * could be done via static code analysis
+     */
+    private fun getStepsWithoutRuntimeData(): List<Step> {
+        return emptyList()
     }
 }

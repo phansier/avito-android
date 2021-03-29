@@ -5,6 +5,7 @@ import com.avito.logger.LoggerFactory
 import com.avito.logger.StubLoggerFactory
 import com.avito.report.ReportsApi
 import com.avito.report.model.AndroidTest
+import com.avito.report.model.BuildId
 import com.avito.report.model.CrossDeviceSuite
 import com.avito.report.model.ReportCoordinates
 import com.avito.report.model.SimpleRunTest
@@ -17,7 +18,7 @@ public fun Report.Companion.createStubInstance(
     reportsApi: ReportsApi,
     loggerFactory: LoggerFactory = StubLoggerFactory,
     batchSize: Int = 1,
-    buildId: String = "1",
+    buildId: BuildId = BuildId.Local,
     reportCoordinates: ReportCoordinates = ReportCoordinates.createStubInstance(),
     timeProvider: TimeProvider = StubTimeProvider()
 ): Report = AvitoReport(

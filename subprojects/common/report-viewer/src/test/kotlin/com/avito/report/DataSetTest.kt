@@ -17,7 +17,6 @@ internal class DataSetTest {
     fun `data_set doesnt sent for empty map`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testRuntimeData = TestRuntimeDataPackage.createStubInstance(dataSetData = emptyMap())
             )
@@ -30,7 +29,6 @@ internal class DataSetTest {
     fun `data_set_number sent`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(dataSetNumber = 1)
             )
@@ -43,7 +41,6 @@ internal class DataSetTest {
     fun `data_set object sent`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(dataSetNumber = 1),
                 testRuntimeData = TestRuntimeDataPackage.createStubInstance(dataSetData = mapOf("vas" to "premium"))
@@ -58,7 +55,6 @@ internal class DataSetTest {
         val exception = assertThrows(IllegalArgumentException::class.java) {
             reports.addTest(
                 reportCoordinates = ReportCoordinates.createStubInstance(),
-                buildId = "1234",
                 test = AndroidTest.Completed.createStubInstance(
                     testStaticData = TestStaticDataPackage.createStubInstance(dataSetNumber = null),
                     testRuntimeData = TestRuntimeDataPackage.createStubInstance(dataSetData = mapOf("vas" to "premium"))

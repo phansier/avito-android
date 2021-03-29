@@ -17,7 +17,6 @@ internal class BehaviorTest {
     fun `behavior positive sent in prepared_data`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(behavior = TestCaseBehavior.POSITIVE)
             )
@@ -30,7 +29,6 @@ internal class BehaviorTest {
     fun `behavior negative sent in prepared_data`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(behavior = TestCaseBehavior.NEGATIVE)
             )

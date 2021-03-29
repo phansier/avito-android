@@ -27,6 +27,7 @@ import com.avito.instrumentation.service.TestRunnerService
 import com.avito.kotlin.dsl.dependencyOn
 import com.avito.kotlin.dsl.getBooleanProperty
 import com.avito.kotlin.dsl.withType
+import com.avito.report.model.BuildId
 import com.avito.utils.gradle.KubernetesCredentials
 import com.avito.utils.gradle.envArgs
 import com.avito.utils.gradle.kubernetesCredentials
@@ -115,7 +116,7 @@ public class InstrumentationTestsPlugin : Plugin<Project> {
                     group = ciTaskGroup
 
                     this.instrumentationConfiguration.set(instrumentationConfiguration)
-                    this.buildId.set(env.build.id.toString())
+                    this.buildId.set(BuildId.CI(env.build.id.toString()))
                     this.buildType.set(env.build.type)
                     this.gitBranch.set(gitState.map { it.currentBranch.name })
                     this.gitCommit.set(gitState.map { it.currentBranch.commit })

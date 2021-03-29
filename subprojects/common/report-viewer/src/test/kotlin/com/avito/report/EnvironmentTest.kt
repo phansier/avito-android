@@ -16,7 +16,6 @@ internal class EnvironmentTest {
     fun `deviceName sent as environment field`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(deviceName = "API-22")
             )

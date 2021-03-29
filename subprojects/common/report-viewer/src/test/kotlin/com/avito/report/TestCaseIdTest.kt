@@ -14,7 +14,6 @@ class TestCaseIdTest {
     fun `testCaseId doesnt sent if null`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = null
@@ -29,7 +28,6 @@ class TestCaseIdTest {
     fun `grouping_key sent for dataSet without testCaseId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = 21345

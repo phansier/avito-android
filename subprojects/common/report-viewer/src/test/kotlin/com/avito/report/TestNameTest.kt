@@ -16,7 +16,6 @@ internal class TestNameTest {
     fun `report with dataSet - name contains dataset number - with testCaseId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = 123,
@@ -33,7 +32,6 @@ internal class TestNameTest {
     fun `report with dataSet - name contains dataset number - no testCaseId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = null,
@@ -50,7 +48,6 @@ internal class TestNameTest {
     fun `report without dataSet - have testName without # - with testCaseId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = 123,
@@ -67,7 +64,6 @@ internal class TestNameTest {
     fun `report without dataSet - have testName without # - no testCaseId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = null,

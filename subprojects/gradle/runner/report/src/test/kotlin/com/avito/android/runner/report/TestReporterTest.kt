@@ -2,6 +2,7 @@ package com.avito.android.runner.report
 
 import com.avito.report.StubReportsApi
 import com.avito.report.model.AndroidTest
+import com.avito.report.model.BuildId
 import com.avito.report.model.ReportCoordinates
 import com.avito.report.model.createStubInstance
 import com.google.common.truth.Truth.assertThat
@@ -11,7 +12,7 @@ internal class TestReporterTest {
 
     private val coordinates: ReportCoordinates = ReportCoordinates.createStubInstance()
     private val device: String = "device"
-    private val buildId: String = "123552"
+    private val buildId: BuildId = BuildId.CI("123552")
 
     @Test
     fun `every lost tests reported by separate request when batch size is 1`() {

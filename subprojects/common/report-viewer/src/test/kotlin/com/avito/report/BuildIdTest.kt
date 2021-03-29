@@ -15,7 +15,6 @@ class BuildIdTest {
     fun `buildId added to list via mongo method hack`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1002134",
             test = AndroidTest.Completed.createStubInstance()
         )
             .singleRequestCaptured()
@@ -31,7 +30,6 @@ class BuildIdTest {
     fun `prepared data tc_build contains buildId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1002134",
             test = AndroidTest.Completed.createStubInstance()
         )
             .singleRequestCaptured()
@@ -47,7 +45,6 @@ class BuildIdTest {
     fun `prepared data doesn't contain tc_build for local build`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = null,
             test = AndroidTest.Completed.createStubInstance()
         )
             .singleRequestCaptured()
@@ -58,7 +55,6 @@ class BuildIdTest {
     fun `report_data doesn't contain for local build`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = null,
             test = AndroidTest.Completed.createStubInstance()
         )
             .singleRequestCaptured()

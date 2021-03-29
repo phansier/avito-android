@@ -17,7 +17,6 @@ internal class KindTest {
     fun `kind e2e sent`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(kind = Kind.E2E)
             )
@@ -30,7 +29,6 @@ internal class KindTest {
     fun `kind component sent`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(kind = Kind.UI_COMPONENT)
             )
@@ -43,7 +41,6 @@ internal class KindTest {
     fun `kind manual sent`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(kind = Kind.MANUAL)
             )

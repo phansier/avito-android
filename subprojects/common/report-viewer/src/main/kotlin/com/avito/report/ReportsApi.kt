@@ -1,6 +1,7 @@
 package com.avito.report
 
 import com.avito.android.Result
+import com.avito.report.model.BuildId
 import com.avito.report.model.CreateResult
 import com.avito.report.model.ReportCoordinates
 import com.google.gson.JsonElement
@@ -12,7 +13,7 @@ interface ReportsApi : ReportsAddApi, ReportsFetchApi {
      */
     fun create(
         reportCoordinates: ReportCoordinates,
-        buildId: String,
+        buildId: BuildId,
         testHost: String,
         gitBranch: String,
         gitCommit: String,

@@ -2,6 +2,7 @@ package com.avito.android.runner.report.factory
 
 import com.avito.android.runner.report.ReadReport
 import com.avito.android.runner.report.Report
+import com.avito.report.model.BuildId
 import com.avito.report.model.ReportCoordinates
 import java.io.Serializable
 
@@ -11,7 +12,7 @@ public interface ReportFactory : Serializable {
 
         public data class ReportViewerCoordinates(
             val reportCoordinates: ReportCoordinates,
-            val buildId: String
+            val buildId: BuildId
         ) : Config()
 
         public data class ReportViewerId(

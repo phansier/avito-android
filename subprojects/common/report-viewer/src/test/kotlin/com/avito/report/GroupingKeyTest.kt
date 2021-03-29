@@ -14,7 +14,6 @@ internal class GroupingKeyTest {
     fun `grouping_key sent for dataSet without testCaseId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = null,
@@ -31,7 +30,6 @@ internal class GroupingKeyTest {
     fun `grouping_key doesnt sent for dataSet with testCaseId`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = 12345,
@@ -48,7 +46,6 @@ internal class GroupingKeyTest {
     fun `grouping_key doesnt sent for testCase without dataset`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     testCaseId = 12345,

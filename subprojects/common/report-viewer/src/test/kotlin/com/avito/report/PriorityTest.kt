@@ -17,7 +17,6 @@ internal class PriorityTest {
     fun `priority major sent in prepared_data`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(priority = TestCasePriority.MAJOR)
             )
@@ -30,7 +29,6 @@ internal class PriorityTest {
     fun `priority minor sent in prepared_data`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(priority = TestCasePriority.MINOR)
             )

@@ -7,6 +7,7 @@ import com.avito.report.internal.model.ConclusionStatus
 import com.avito.report.internal.model.CreateResponse
 import com.avito.report.internal.model.RfcRpcRequest
 import com.avito.report.internal.model.RpcResult
+import com.avito.report.model.BuildId
 import com.avito.report.model.CreateResult
 import com.avito.report.model.CreateResult.AlreadyCreated
 import com.avito.report.model.CreateResult.Created
@@ -24,7 +25,7 @@ internal class ReportsApiImpl(
 
     override fun create(
         reportCoordinates: ReportCoordinates,
-        buildId: String,
+        buildId: BuildId,
         testHost: String,
         gitBranch: String,
         gitCommit: String,

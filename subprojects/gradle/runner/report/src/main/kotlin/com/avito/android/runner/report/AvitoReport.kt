@@ -5,6 +5,7 @@ import com.avito.logger.LoggerFactory
 import com.avito.logger.create
 import com.avito.report.ReportsApi
 import com.avito.report.model.AndroidTest
+import com.avito.report.model.BuildId
 import com.avito.report.model.CreateResult
 import com.avito.report.model.CrossDeviceSuite
 import com.avito.report.model.GetReportResult
@@ -23,7 +24,7 @@ internal class AvitoReport(
     private val reportsApi: ReportsApi,
     loggerFactory: LoggerFactory,
     private val reportCoordinates: ReportCoordinates,
-    private val buildId: String,
+    private val buildId: BuildId,
     private val timeProvider: TimeProvider,
     private val batchSize: Int = 400
 ) : Report {

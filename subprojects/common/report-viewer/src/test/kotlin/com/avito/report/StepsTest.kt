@@ -16,7 +16,6 @@ internal class StepsTest {
 
     private fun testRequest(reports: StubReportApi) = reports.addTest(
         reportCoordinates = ReportCoordinates.createStubInstance(),
-        buildId = "1234",
         test = AndroidTest.Completed.createStubInstance(
             testRuntimeData = TestRuntimeDataPackage.createStubInstance(
                 steps = listOf(

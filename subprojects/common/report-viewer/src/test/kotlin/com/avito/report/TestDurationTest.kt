@@ -16,7 +16,6 @@ class TestDurationTest {
         val now = Date().time
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testRuntimeData = TestRuntimeDataPackage.createStubInstance(
                     startTime = now
@@ -32,7 +31,6 @@ class TestDurationTest {
         val now = Date().time
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testRuntimeData = TestRuntimeDataPackage.createStubInstance(
                     endTime = now

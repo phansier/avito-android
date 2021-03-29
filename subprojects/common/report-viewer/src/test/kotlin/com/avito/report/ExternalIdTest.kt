@@ -19,7 +19,6 @@ internal class ExternalIdTest {
         val externalId = UUID.randomUUID().toString()
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(externalId = externalId)
             )
@@ -33,7 +32,6 @@ internal class ExternalIdTest {
         val externalId = UUID.randomUUID().toString()
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     externalId = externalId,
@@ -49,7 +47,6 @@ internal class ExternalIdTest {
     fun `externalId doesnt sent if not set`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     externalId = null

@@ -17,7 +17,6 @@ class FlakinessTest {
     fun `prepared data contains flakiness - test is stable`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1002134",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     flakiness = Flakiness.Stable
@@ -42,7 +41,6 @@ class FlakinessTest {
     fun `prepared data contains flakiness - test is flaky`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1002134",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(
                     flakiness = Flakiness.Flaky("Just because")

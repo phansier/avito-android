@@ -8,6 +8,7 @@ import com.avito.instrumentation.createStub
 import com.avito.instrumentation.createStubInstance
 import com.avito.instrumentation.internal.suite.filter.FilterFactory
 import com.avito.instrumentation.internal.suite.filter.ImpactAnalysisResult
+import com.avito.report.model.BuildId
 import com.avito.report.model.ReportCoordinates
 import com.avito.report.model.createStubInstance
 
@@ -19,7 +20,7 @@ internal object FilterFactoryFactory {
         reportsByConfig: Map<ReportFactory.Config, Report> = emptyMap(),
         reportConfig: ReportFactory.Config = ReportFactory.Config.ReportViewerCoordinates(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "stub"
+            buildId = BuildId.Local
         )
     ): FilterFactory {
         return FilterFactory.create(

@@ -16,7 +16,6 @@ internal class FeatureIdTest {
     fun `feature_id sent`(reports: StubReportApi) {
         reports.addTest(
             reportCoordinates = ReportCoordinates.createStubInstance(),
-            buildId = "1234",
             test = AndroidTest.Completed.createStubInstance(
                 testStaticData = TestStaticDataPackage.createStubInstance(featureIds = listOf(256, 512))
             )

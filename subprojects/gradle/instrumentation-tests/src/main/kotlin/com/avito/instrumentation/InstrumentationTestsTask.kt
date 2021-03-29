@@ -27,6 +27,7 @@ import com.avito.instrumentation.service.TestRunnerService
 import com.avito.instrumentation.service.TestRunnerWorkAction
 import com.avito.logger.GradleLoggerFactory
 import com.avito.logger.LoggerFactory
+import com.avito.report.model.BuildId
 import com.avito.report.model.ReportCoordinates
 import com.avito.time.DefaultTimeProvider
 import com.avito.time.TimeProvider
@@ -82,7 +83,7 @@ public abstract class InstrumentationTestsTask @Inject constructor(
     public val testProguardMapping: RegularFileProperty = objects.fileProperty()
 
     @Input
-    public val buildId: Property<String> = objects.property()
+    public val buildId: Property<BuildId> = objects.property()
 
     @Input
     public val buildType: Property<String> = objects.property()
@@ -164,7 +165,7 @@ public abstract class InstrumentationTestsTask @Inject constructor(
             testApk = testApplication.get().getApkOrThrow(),
             instrumentationConfiguration = configuration,
             executionParameters = parameters.get(),
-            buildId = buildId.get(),
+            buildId = buildId.get().toString(),
             buildType = buildType.get(),
             kubernetesCredentials = requireNotNull(kubernetesCredentials.orNull) {
                 "you need to provide kubernetesCredentials"
@@ -230,7 +231,7 @@ public abstract class InstrumentationTestsTask @Inject constructor(
                 buildId = buildId.get()
             )
         } else {
-            ReportFactory.Config.InMemory(buildId.get())
+            ReportFactory.Config.InMemory(buildId.get().toString())
         }
     }
 

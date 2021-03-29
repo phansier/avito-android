@@ -20,7 +20,7 @@ class StubReportApi(
         .create()
 ) {
 
-    fun addTest(reportCoordinates: ReportCoordinates, buildId: String?, test: AndroidTest): RequestCapturer.Checks {
+    fun addTest(reportCoordinates: ReportCoordinates, test: AndroidTest): RequestCapturer.Checks {
         mockDispatcher.registerMock(
             Mock(
                 requestMatcher = { true },
@@ -32,7 +32,7 @@ class StubReportApi(
 
         val request = mockDispatcher.captureRequest { true }.checks
 
-        realApi.addTest(reportCoordinates, buildId, test).getOrThrow()
+        realApi.addTest(reportCoordinates, test).getOrThrow()
 
         return request
     }
