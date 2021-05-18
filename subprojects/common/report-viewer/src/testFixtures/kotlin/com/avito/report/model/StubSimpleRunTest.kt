@@ -3,7 +3,7 @@ package com.avito.report.model
 import com.avito.android.test.annotations.TestCaseBehavior
 import com.avito.android.test.annotations.TestCasePriority
 
-fun SimpleRunTest.Companion.createStubInstance(
+public fun SimpleRunTest.Companion.createStubInstance(
     id: String = "1234",
     reportId: String = "12345",
     name: String = "com.Test.test",
@@ -28,7 +28,7 @@ fun SimpleRunTest.Companion.createStubInstance(
     behavior: TestCaseBehavior? = null,
     kind: Kind = Kind.E2E,
     flakiness: Flakiness = Flakiness.Stable
-) = SimpleRunTest(
+): SimpleRunTest = SimpleRunTest(
     id = id,
     reportId = reportId,
     name = name,

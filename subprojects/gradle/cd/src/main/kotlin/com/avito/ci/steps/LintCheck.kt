@@ -2,10 +2,10 @@ package com.avito.ci.steps
 
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.avito.android.isAndroidApp
+import com.avito.android.lint.AndroidLintAccessor
 import com.avito.android.lint.slack.LintReportToSlackTaskFactory
 import com.avito.impact.configuration.internalModule
 import com.avito.logger.GradleLoggerFactory
-import com.avito.logger.create
 import com.avito.slack.model.SlackChannel
 import com.avito.utils.gradle.BuildEnvironment
 import com.avito.utils.gradle.buildEnvironment
@@ -29,9 +29,13 @@ class LintCheck(context: String, name: String) : SuppressibleBuildStep(context, 
 
         if (useImpactAnalysis && !project.internalModule.isModified()) return
 
+        rootTask.dependsOn(
+            AndroidLintAccessor(project).taskProvider()
+        )
+
         project.pluginManager.withPlugin("com.avito.android.lint-report") {
 
-            val logger = GradleLoggerFactory.fromProject(project).create<LintCheck>()
+            val logger = GradleLoggerFactory.fromProject(project)
             val factory = LintReportToSlackTaskFactory(project, logger)
 
             val slackChannel = slackChannelForAlerts

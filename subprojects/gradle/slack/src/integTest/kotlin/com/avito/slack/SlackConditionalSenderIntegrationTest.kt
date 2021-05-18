@@ -1,6 +1,8 @@
 package com.avito.slack
 
 import com.avito.android.Result
+import com.avito.http.HttpClientProvider
+import com.avito.http.createStubInstance
 import com.avito.kotlin.dsl.getSystemProperty
 import com.avito.logger.StubLoggerFactory
 import com.avito.slack.model.SlackChannel
@@ -13,13 +15,21 @@ import java.util.UUID
 
 internal class SlackConditionalSenderIntegrationTest {
 
+    private val loggerFactory = StubLoggerFactory
+
     private val testChannelId = SlackChannel(
         id = getSystemProperty("avito.slack.test.channelId"),
         name = getSystemProperty("avito.slack.test.channel")
     )
+
     private val testToken = getSystemProperty("avito.slack.test.token")
-    private val slackClient: SlackClient = SlackClient.Impl(testToken, getSystemProperty("avito.slack.test.workspace"))
-    private val loggerFactory = StubLoggerFactory
+
+    private val slackClient: SlackClient = SlackClient.Impl(
+        serviceName = "slack-integration-tests",
+        token = testToken,
+        workspace = getSystemProperty("avito.slack.test.workspace"),
+        httpClientProvider = HttpClientProvider.createStubInstance(loggerFactory = loggerFactory)
+    )
 
     @Test
     fun `second message - updates with thread message - if contains same unique string as first one`() {

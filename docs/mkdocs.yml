@@ -52,7 +52,7 @@ markdown_extensions:
             emoji_generator: !!python/name:pymdownx.emoji.to_svg
 
 extra_javascript:
-    - https://unpkg.com/mermaid@8.8.4/dist/mermaid.min.js
+    - https://unpkg.com/mermaid@8.9.3/dist/mermaid.min.js
 
 extra:
     social:
@@ -73,6 +73,7 @@ nav:
                     -   Documentation: contributing/Documentation.md
                     -   Logging: contributing/Logging.md
                     -   Networking: contributing/Networking.md
+                    -   Testing: contributing/Testing.md
                     -   Release: contributing/Release.md
     -   Projects:
             -   Build checks: projects/BuildChecks.md

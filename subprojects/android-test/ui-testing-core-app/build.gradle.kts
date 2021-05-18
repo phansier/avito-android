@@ -43,14 +43,16 @@ dependencies {
 
     implementation(project(":android-lib:proxy-toast"))
 
-    androidTestImplementation(project(":android-test:toast-rule"))
+    androidTestImplementation(project(":test-runner:test-inhouse-runner"))
+    androidTestImplementation(project(":test-runner:test-report"))
+    androidTestImplementation(project(":test-runner:test-annotations"))
+    androidTestImplementation(project(":common:report-viewer")) {
+        because("Priority/Behavior test annotations still there")
+    }
+
     androidTestImplementation(project(":android-test:ui-testing-core"))
-    androidTestImplementation(project(":android-test:test-inhouse-runner"))
-    androidTestImplementation(project(":android-test:test-report"))
-    androidTestImplementation(project(":common:junit-utils"))
+    androidTestImplementation(project(":android-test:toast-rule"))
     androidTestImplementation(project(":common:truth-extensions"))
-    androidTestImplementation(project(":common:test-annotations"))
-    androidTestImplementation(project(":common:report-viewer"))
 
     androidTestUtil(libs.testOrchestrator)
 }

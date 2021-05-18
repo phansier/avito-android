@@ -4,7 +4,6 @@ import com.avito.android.stats.statsd
 import com.avito.http.HttpClientProvider
 import com.avito.logger.GradleLoggerFactory
 import com.avito.logger.LoggerFactory
-import com.avito.report.ReportViewer
 import com.avito.report.ReportsApi
 import com.avito.report.ReportsApiFactory
 import com.avito.report.model.Team
@@ -23,15 +22,23 @@ class TestSummaryPlugin : Plugin<Project> {
 
         val extension = target.extensions.create<TestSummaryExtension>(testSummaryExtensionName)
 
-        @Suppress("UnstableApiUsage")
-        val slackClient: Provider<SlackClient> =
-            extension.slackToken.zip(extension.slackWorkspace) { token, workspace ->
-                createSlackClient(token, workspace)
-            }
-
         val loggerFactory = GradleLoggerFactory.fromPlugin(this, target)
 
         val timeProvider: TimeProvider = DefaultTimeProvider()
+
+        @Suppress("UnstableApiUsage")
+        val slackClient: Provider<SlackClient> =
+            extension.slackToken.zip(extension.slackWorkspace) { token, workspace ->
+                createSlackClient(
+                    slackToken = token,
+                    slackWorkspace = workspace,
+                    httpClientProvider = HttpClientProvider(
+                        statsDSender = target.statsd.get(),
+                        timeProvider = timeProvider,
+                        loggerFactory = loggerFactory
+                    )
+                )
+            }
 
         val reportsApi: Provider<ReportsApi> = extension.reportsHost.map {
             createReportsApi(
@@ -44,8 +51,6 @@ class TestSummaryPlugin : Plugin<Project> {
                 )
             )
         }
-
-        val reportViewer: Provider<ReportViewer> = extension.reportViewerUrl.map { createReportViewer(it) }
 
         // report coordinates provided in TestSummaryStep
         // this plugin only works via steps for now
@@ -65,7 +70,7 @@ class TestSummaryPlugin : Plugin<Project> {
 
             this.slackClient.set(slackClient)
             this.reportsApi.set(reportsApi)
-            this.reportViewer.set(reportViewer)
+            this.reportViewerUrl.set(reportViewerUrl)
         }
 
         target.tasks.register<FlakyReportTask>(flakyReportTaskName) {
@@ -81,14 +86,16 @@ class TestSummaryPlugin : Plugin<Project> {
         }
     }
 
-    private fun createReportViewer(reportViewerUrl: String): ReportViewer {
-        return ReportViewer.Impl(reportViewerUrl)
-    }
-
-    private fun createSlackClient(slackToken: String, slackWorkspace: String): SlackClient {
+    private fun createSlackClient(
+        slackToken: String,
+        slackWorkspace: String,
+        httpClientProvider: HttpClientProvider
+    ): SlackClient {
         return SlackClient.Impl(
+            serviceName = "test-summary-slack",
             token = slackToken,
-            workspace = slackWorkspace
+            workspace = slackWorkspace,
+            httpClientProvider = httpClientProvider
         )
     }
 
