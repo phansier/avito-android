@@ -40,7 +40,11 @@ open class ActivityScenarioRule<A : Activity>(
 
     override fun after() {
         super.after()
-        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
+//        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
+//            close()
+//            afterActivityFinished()
+//        }
+        scenario?.run {
             close()
             afterActivityFinished()
         }
