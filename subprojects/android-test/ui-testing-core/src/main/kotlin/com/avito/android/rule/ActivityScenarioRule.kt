@@ -18,7 +18,7 @@ import java.lang.ref.WeakReference
 open class ActivityScenarioRule<A : Activity>(
     private val activityClass: Class<A>,
     private val launchActivity: Boolean
-) : SimpleRule() {
+) : ExternalResource() {
 
     val activity: A
         get() = activityRef.get() ?: throwActivityIsNotLaunchedException()
