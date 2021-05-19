@@ -6,8 +6,7 @@ import android.content.Intent
 import androidx.annotation.CallSuper
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.rules.ExternalResource
-import java.lang.ref.WeakReference
+import com.avito.android.test.util.getFieldByReflection
 
 /**
  * This rule provides functional testing of a single [Activity] similar to deprecated
@@ -18,37 +17,28 @@ import java.lang.ref.WeakReference
 open class ActivityScenarioRule<A : Activity>(
     private val activityClass: Class<A>,
     private val launchActivity: Boolean
-) : ExternalResource() {
+) : SimpleRule() {
 
     val activity: A
-        get() = activityRef.get() ?: throwActivityIsNotLaunchedException()
+        get() = checkNotNull(scenario).getFieldByReflection("currentActivity")
     val activityResult: Instrumentation.ActivityResult
         get() = scenario?.result ?: throwActivityIsNotLaunchedException()
 
     private val activityIsNotLaunchedMessage = "Activity $activityClass is not launched"
 
     private var scenario: ActivityScenario<A>? = null
-    private var activityRef: WeakReference<A> = WeakReference(null)
 
     override fun before() {
         super.before()
         if (launchActivity) {
-            scenario = ActivityScenario.launch(activityClass)
-            afterActivityLaunched()
+            launchActivity(null)
         }
     }
 
     override fun after() {
         super.after()
-//        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
-//            close()
-//            afterActivityFinished()
-//        }
-        scenario?.run {
-            close()
-            afterActivityFinished()
-        }
-        activityRef.clear()
+        scenario?.close()
+        afterActivityFinished()
     }
 
     fun launchActivity(intent: Intent? = null): A {
@@ -59,15 +49,12 @@ open class ActivityScenarioRule<A : Activity>(
             )
         }
         afterActivityLaunched()
-        return activityRef.get() ?: throwActivityIsNotLaunchedException()
+        return checkNotNull(scenario).getFieldByReflection("currentActivity")
     }
 
     fun runOnUiThread(runnable: Runnable) {
-//        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
-//            onActivity { runnable.run() }
-//        }
-        InstrumentationRegistry.getInstrumentation().runOnMainSync {
-            runnable.run()
+        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
+            onActivity { runnable.run() }
         }
     }
 
@@ -75,7 +62,7 @@ open class ActivityScenarioRule<A : Activity>(
 
     @CallSuper
     protected open fun afterActivityLaunched() {
-        checkNotNull(scenario).onActivity { activityRef = WeakReference(it) }
+        // empty
     }
 
     @CallSuper

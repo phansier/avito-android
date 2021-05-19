@@ -17,6 +17,7 @@ dependencies {
 
     // todo implementation, waitForAssertion used in app
     api(project(":common:waiter"))
+    implementation(project(":common:junit-utils"))
 
     implementation(libs.hamcrestLib)
     implementation(libs.junit)
