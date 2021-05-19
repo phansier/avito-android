@@ -63,8 +63,11 @@ open class ActivityScenarioRule<A : Activity>(
     }
 
     fun runOnUiThread(runnable: Runnable) {
-        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
-            onActivity { runnable.run() }
+//        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
+//            onActivity { runnable.run() }
+//        }
+        InstrumentationRegistry.getInstrumentation().runOnMainSync {
+            runnable.run()
         }
     }
 
