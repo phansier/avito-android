@@ -7,6 +7,7 @@ import androidx.annotation.CallSuper
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import com.avito.android.test.util.getFieldByReflection
+import org.junit.rules.ExternalResource
 
 /**
  * This rule provides functional testing of a single [Activity] similar to deprecated
@@ -17,10 +18,11 @@ import com.avito.android.test.util.getFieldByReflection
 open class ActivityScenarioRule<A : Activity>(
     private val activityClass: Class<A>,
     private val launchActivity: Boolean
-) : SimpleRule() {
+) : ExternalResource() {
 
-    val activity: A
-        get() = checkNotNull(scenario).getFieldByReflection("currentActivity")
+    lateinit var activity: A
+        private set
+
     val activityResult: Instrumentation.ActivityResult
         get() = scenario?.result ?: throwActivityIsNotLaunchedException()
 
@@ -37,8 +39,10 @@ open class ActivityScenarioRule<A : Activity>(
 
     override fun after() {
         super.after()
-        scenario?.close()
-        afterActivityFinished()
+        scenario?.run {
+            close()
+            afterActivityFinished()
+        }
     }
 
     fun launchActivity(intent: Intent? = null): A {
@@ -49,7 +53,8 @@ open class ActivityScenarioRule<A : Activity>(
             )
         }
         afterActivityLaunched()
-        return checkNotNull(scenario).getFieldByReflection("currentActivity")
+        activity = checkNotNull(scenario).getFieldByReflection("currentActivity")
+        return activity
     }
 
     fun runOnUiThread(runnable: Runnable) {
