@@ -57,7 +57,6 @@ include(":gradle:build-failer")
 include(":gradle:build-failer-test-fixtures")
 include(":gradle:build-environment")
 include(":gradle:worker")
-include(":gradle:gradle-logger")
 include(":gradle:module-dependencies-graph")
 
 include(":common:build-metadata")
@@ -70,16 +69,13 @@ include(":common:test-okhttp")
 include(":common:report-api")
 include(":common:report-viewer")
 include(":common:result")
-include(":common:elastic-logger")
 include(":common:elastic")
 include(":common:http-client")
-include(":common:sentry-logger")
 include(":common:sentry")
-include(":common:slf4j-logger")
 include(":common:graphite")
 include(":common:statsd")
 include(":common:statsd-test-fixtures")
-include(":common:logger")
+include(":common:problem")
 include(":common:waiter")
 include(":common:kotlin-ast-parser")
 include(":common:random-utils")
@@ -103,7 +99,6 @@ include(":android-test:instrumentation")
 include(":android-test:toast-rule")
 include(":android-test:snackbar-rule")
 include(":android-test:test-screenshot")
-include(":android-test:android-log")
 include(":android-test:rx3-idler")
 
 include(":android-lib:proxy-toast")
@@ -122,6 +117,13 @@ include(":test-runner:instrumentation-changed-tests-finder")
 include(":test-runner:instrumentation-tests")
 include(":test-runner:instrumentation-tests-dex-loader")
 include(":test-runner:instrumentation-tests-dex-loader-test-fixtures")
+
+include(":logger:gradle-logger")
+include(":logger:android-log")
+include(":logger:logger")
+include(":logger:slf4j-logger")
+include(":logger:sentry-logger")
+include(":logger:elastic-logger")
 
 @Suppress("UnstableApiUsage")
 pluginManagement {
@@ -305,12 +307,16 @@ plugins {
 }
 
 val isCI = booleanProperty("ci", false)
+val buildId = stringProperty("teamcityBuildId", nullIfBlank = true)
 
 gradleEnterprise {
     buildScan {
         termsOfServiceUrl = "https://gradle.com/terms-of-service"
         termsOfServiceAgree = "yes"
-        publishOnFailureIf(isCI)
+        // Lost scans due to upload interruptions after build finishes
+        isUploadInBackground = false
+        publishAlwaysIf(isCI)
+        if (buildId != null) value("buildId", buildId)
     }
 }
 
@@ -319,5 +325,14 @@ fun booleanProperty(name: String, defaultValue: Boolean): Boolean {
         settings.extra[name]?.toString()?.toBoolean() ?: defaultValue
     } else {
         defaultValue
+    }
+}
+
+fun stringProperty(name: String, nullIfBlank: Boolean = false): String? {
+    return if (settings.extra.has(name)) {
+        val string = settings.extra[name]?.toString()
+        if (nullIfBlank && string.isNullOrBlank()) null else string
+    } else {
+        null
     }
 }

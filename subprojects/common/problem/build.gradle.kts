@@ -4,7 +4,6 @@ plugins {
     id("convention.libraries")
 }
 
-dependencies {
-    api(project(":common:sentry"))
-    api(project(":common:logger"))
+kotlin {
+    explicitApi()
 }
