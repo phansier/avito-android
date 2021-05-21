@@ -5,6 +5,8 @@ import android.app.Instrumentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
+import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import com.avito.android.util.waitForAssertion
 import org.junit.Assert
@@ -53,28 +55,28 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
 
     private val activityRule = ActivityRule(activityClass)
 
-    val checks = ChecksLibrary { activityRule.activity }
+    val checks = ChecksLibrary { activityRule.scenario }
 
     val activityResult: Instrumentation.ActivityResult
         get() = activityRule.activityResult
 
-    val activity: Activity
-        get() = activityRule.activity
+    val activity: ActivityScenario<T>
+        get() = activityRule.scenario
 
-    fun launchActivity(startIntent: Intent?): T = activityRule.launchActivity(startIntent)
+    fun launchActivity(startIntent: Intent?): ActivityScenario<T> = activityRule.launchActivity(startIntent)
 
     fun runOnUiThread(body: () -> Unit) {
         activityRule.runOnUiThread { body.invoke() }
     }
 
-    class ChecksLibrary(private val activity: () -> Activity?) {
+    class ChecksLibrary<T : Activity>(private val activity: () -> ActivityScenario<T>) {
 
         fun isFinishing() {
-            waitForAssertion { Assert.assertTrue(activity()?.isFinishing ?: false) }
+            waitForAssertion { Assert.assertEquals(Lifecycle.State.DESTROYED, activity().state) }
         }
 
         fun isNotFinishing() {
-            waitForAssertion { Assert.assertFalse(activity()?.isFinishing ?: true) }
+            waitForAssertion { Assert.assertNotEquals(Lifecycle.State.DESTROYED, activity().state) }
         }
 
         fun activityResult(expectedResult: Int) {

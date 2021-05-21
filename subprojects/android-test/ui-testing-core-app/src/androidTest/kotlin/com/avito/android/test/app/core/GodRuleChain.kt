@@ -3,6 +3,7 @@ package com.avito.android.test.app.core
 import android.app.Activity
 import android.app.Instrumentation
 import android.content.Intent
+import androidx.test.core.app.ActivityScenario
 import com.avito.android.rule.ActivityScenarioRule
 import org.junit.rules.RuleChain
 import org.junit.rules.TestRule
@@ -20,17 +21,18 @@ class GodRuleChain<out T : Activity>(private val chain: RuleChain) : TestRule {
 
     private val activityTestRule = rules.filterIsInstance<ActivityScenarioRule<T>>().first()
 
-    val activity: T
-        get() = activityTestRule.activity
+    fun onActivity(action: T.() -> Unit) {
+        activityTestRule.scenario.onActivity { action(it) }
+    }
 
     val activityResult: Instrumentation.ActivityResult
         get() = activityTestRule.activityResult
 
     fun runOnUiThread(runnable: () -> Unit) = activityTestRule.runOnUiThread(runnable)
 
-    fun launchActivity(intent: Intent?): T = activityTestRule.launchActivity(intent)
+    fun launchActivity(intent: Intent?): ActivityScenario<out T> = activityTestRule.launchActivity(intent)
 
-    fun launchActivity(func: (Intent) -> Intent): T =
+    fun launchActivity(func: (Intent) -> Intent): ActivityScenario<out T> =
         activityTestRule.launchActivity(func(Intent(Intent.ACTION_MAIN)))
 
     override fun apply(base: Statement?, description: Description?): Statement {

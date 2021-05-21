@@ -6,8 +6,6 @@ import android.content.Intent
 import androidx.annotation.CallSuper
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
-import com.avito.android.test.util.getFieldByReflection
-import org.junit.rules.ExternalResource
 
 /**
  * This rule provides functional testing of a single [Activity] similar to deprecated
@@ -18,17 +16,15 @@ import org.junit.rules.ExternalResource
 open class ActivityScenarioRule<A : Activity>(
     private val activityClass: Class<A>,
     private val launchActivity: Boolean
-) : ExternalResource() {
-
-    lateinit var activity: A
-        private set
+) : SimpleRule() {
 
     val activityResult: Instrumentation.ActivityResult
-        get() = scenario?.result ?: throwActivityIsNotLaunchedException()
+        get() = scenario.result
 
     private val activityIsNotLaunchedMessage = "Activity $activityClass is not launched"
 
-    private var scenario: ActivityScenario<A>? = null
+    lateinit var scenario: ActivityScenario<A>
+        private set
 
     override fun before() {
         super.before()
@@ -39,13 +35,11 @@ open class ActivityScenarioRule<A : Activity>(
 
     override fun after() {
         super.after()
-        scenario?.run {
-            close()
-            afterActivityFinished()
-        }
+        scenario.close()
+        afterActivityFinished()
     }
 
-    fun launchActivity(intent: Intent? = null): A {
+    fun launchActivity(intent: Intent? = null): ActivityScenario<A> {
         scenario = when (intent) {
             null -> ActivityScenario.launch(activityClass)
             else -> ActivityScenario.launch(
@@ -53,14 +47,11 @@ open class ActivityScenarioRule<A : Activity>(
             )
         }
         afterActivityLaunched()
-        activity = checkNotNull(scenario).getFieldByReflection("currentActivity")
-        return activity
+        return scenario
     }
 
     fun runOnUiThread(runnable: Runnable) {
-        with(checkNotNull(scenario) { activityIsNotLaunchedMessage }) {
-            onActivity { runnable.run() }
-        }
+        scenario.onActivity { runnable.run() }
     }
 
     private fun throwActivityIsNotLaunchedException(): Nothing = error(activityIsNotLaunchedMessage)
