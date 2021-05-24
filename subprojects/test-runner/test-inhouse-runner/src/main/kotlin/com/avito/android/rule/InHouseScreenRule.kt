@@ -92,6 +92,12 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
 
             waitForAssertion { Assert.assertEquals(errorMessage, expectedResult, actualResult.resultCode) }
         }
+
+        fun onActivityResultData(action: (Intent) -> Unit) {
+            // Workaround for bug https://github.com/android/android-test/issues/733
+            val data = activity().result.resultData.also { it.setExtrasClassLoader(this::class.java.classLoader) }
+            action(data)
+        }
     }
 
     override fun apply(base: Statement, description: Description): Statement = activityRule.apply(base, description)

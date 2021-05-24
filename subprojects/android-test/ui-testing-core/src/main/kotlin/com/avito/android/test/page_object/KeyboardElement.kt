@@ -2,10 +2,10 @@ package com.avito.android.test.page_object
 
 import android.app.Activity
 import android.graphics.Rect
+import android.os.Looper
 import android.view.View
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
-import androidx.test.platform.app.InstrumentationRegistry
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 
@@ -48,34 +48,35 @@ class KeyboardElement : PageObject() {
         }
 
         private fun checkDisplayed(activity: Activity, isOpen: Boolean) {
-            var threshold = 0
-            var activityEffectiveHeight = 0
+            assertThat(
+                "This method must be called from main thread!",
+                Looper.myLooper(),
+                `is`(Looper.getMainLooper())
+            )
 
-            InstrumentationRegistry.getInstrumentation().runOnMainSync {
-                val content = activity.findViewById<View>(android.R.id.content)
+            val content = activity.findViewById<View>(android.R.id.content)
 
-                val activityHeight = content.rootView.height
-                val minimalKeyboardHeight = activityHeight * KEYBOARD_MINIMUM_HEIGHT_PERCENTAGE
+            val activityHeight = content.rootView.height
+            val minimalKeyboardHeight = activityHeight * KEYBOARD_MINIMUM_HEIGHT_PERCENTAGE
 
-                // If mAttachInfo is null we can't check keyboard position.
-                // https://issuetracker.google.com/u/1/issues/68137674
-                View::class.java.getDeclaredField("mAttachInfo").apply {
-                    isAccessible = true
+            // If mAttachInfo is null we can't check keyboard position.
+            // https://issuetracker.google.com/u/1/issues/68137674
+            View::class.java.getDeclaredField("mAttachInfo").apply {
+                isAccessible = true
 
-                    if (get(content) == null) {
-                        throw RuntimeException(
-                            "Can't check keyboard position. Because View::mAttachInfo is null." +
-                                " Did you rotate screen in test before this check?"
-                        )
-                    }
+                if (get(content) == null) {
+                    throw RuntimeException(
+                        "Can't check keyboard position. Because View::mAttachInfo is null." +
+                            " Did you rotate screen in test before this check?"
+                    )
                 }
-
-                activityEffectiveHeight = Rect()
-                    .apply { content.getWindowVisibleDisplayFrame(this) }
-                    .height()
-
-                threshold = (activityHeight - minimalKeyboardHeight).toInt()
             }
+
+            val activityEffectiveHeight = Rect()
+                .apply { content.getWindowVisibleDisplayFrame(this) }
+                .height()
+
+            val threshold = (activityHeight - minimalKeyboardHeight).toInt()
 
             assertThat(
                 generateErrorMessage(
