@@ -59,7 +59,13 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
     val checks = ChecksLibrary { activityRule.scenario }
 
     val activityResult: Instrumentation.ActivityResult
-        get() = activityRule.activityResult
+        // Workaround for bug https://github.com/android/android-test/issues/733
+        get() {
+            val raw = activityRule.activityResult
+            return Instrumentation.ActivityResult(raw.resultCode, raw.resultData.apply {
+                setExtrasClassLoader(this::class.java.classLoader)
+            })
+        }
 
     val activity: ActivityScenario<T>
         get() = activityRule.scenario
@@ -95,7 +101,7 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
 
         fun onActivityResultData(action: (Intent) -> Unit) {
             // Workaround for bug https://github.com/android/android-test/issues/733
-            val data = activity().result.resultData.also { it.setExtrasClassLoader(this::class.java.classLoader) }
+            val data = activity().result.resultData.apply { setExtrasClassLoader(this::class.java.classLoader) }
             action(data)
         }
     }

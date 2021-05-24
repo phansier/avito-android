@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.View
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
+import androidx.test.platform.app.InstrumentationRegistry
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 
@@ -38,20 +39,25 @@ class KeyboardElement : PageObject() {
         fun isDisplayed(activity: Activity) {
             // FIXME(MBS-1301)
             Thread.sleep(1000)
-            checkDisplayed(activity, true)
+            checkDisplayedThreadSafe(activity, true)
         }
 
         fun isNotDisplayed(activity: Activity) {
             // FIXME(MBS-1301)
             Thread.sleep(1000)
-            checkDisplayed(activity, false)
+            checkDisplayedThreadSafe(activity, false)
+        }
+
+        private fun checkDisplayedThreadSafe(activity: Activity, isOpen: Boolean) = when (isMainThread()) {
+            true -> checkDisplayed(activity, isOpen)
+            false -> InstrumentationRegistry.getInstrumentation().runOnMainSync { checkDisplayed(activity, isOpen) }
         }
 
         private fun checkDisplayed(activity: Activity, isOpen: Boolean) {
             assertThat(
                 "This method must be called from main thread!",
-                Looper.myLooper(),
-                `is`(Looper.getMainLooper())
+                isMainThread(),
+                `is`(true)
             )
 
             val content = activity.findViewById<View>(android.R.id.content)
@@ -114,6 +120,8 @@ class KeyboardElement : PageObject() {
             return "${getStatusMessage(!displayed, true)} $doesNotMatch" +
                 " $expected ${getStatusMessage(displayed, false)}"
         }
+
+        private fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
 
         companion object {
             // not a bad name for private const
