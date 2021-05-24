@@ -5,7 +5,6 @@ import android.app.Instrumentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import com.avito.android.util.waitForAssertion
@@ -72,22 +71,24 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
     class ChecksLibrary<T : Activity>(private val activity: () -> ActivityScenario<T>) {
 
         fun isFinishing() {
-            waitForAssertion { Assert.assertEquals(Lifecycle.State.DESTROYED, activity().state) }
+            waitForAssertion {
+                activity().onActivity { Assert.assertTrue(it.isFinishing) }
+            }
         }
 
         fun isNotFinishing() {
-            waitForAssertion { Assert.assertNotEquals(Lifecycle.State.DESTROYED, activity().state) }
+            waitForAssertion {
+                activity().onActivity { Assert.assertFalse(it.isFinishing) }
+            }
         }
 
         fun activityResult(expectedResult: Int) {
-            val field = Activity::class.java.getDeclaredField("mResultCode")
-            field.isAccessible = true
-            val actualResult = field.getInt(activity())
+            val actualResult = activity().result
             val errorMessage = "Activity result code mismatch\n" +
                 "expected: $expectedResult\n" +
                 "actual: $actualResult"
 
-            waitForAssertion { Assert.assertTrue(errorMessage, expectedResult == actualResult) }
+            waitForAssertion { Assert.assertEquals(errorMessage, expectedResult, actualResult.resultCode) }
         }
     }
 
