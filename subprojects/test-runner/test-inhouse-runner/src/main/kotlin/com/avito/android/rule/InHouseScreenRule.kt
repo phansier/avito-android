@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package com.avito.android.rule
 
 import android.app.Activity
@@ -5,6 +6,7 @@ import android.app.Instrumentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import com.avito.android.util.waitForAssertion
@@ -72,13 +74,13 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
 
         fun isFinishing() {
             waitForAssertion {
-                activity().onActivity { Assert.assertTrue(it.isFinishing) }
+                Assert.assertEquals(Lifecycle.State.DESTROYED, activity().state)
             }
         }
 
         fun isNotFinishing() {
             waitForAssertion {
-                activity().onActivity { Assert.assertFalse(it.isFinishing) }
+                Assert.assertNotEquals(Lifecycle.State.DESTROYED, activity().state)
             }
         }
 
