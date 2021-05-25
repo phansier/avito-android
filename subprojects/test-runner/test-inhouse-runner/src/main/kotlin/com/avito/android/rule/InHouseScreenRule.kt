@@ -62,7 +62,7 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
         // Workaround for bug https://github.com/android/android-test/issues/733
         get() {
             val raw = activityRule.activityResult
-            return Instrumentation.ActivityResult(raw.resultCode, raw.resultData.apply {
+            return Instrumentation.ActivityResult(raw.resultCode, raw.resultData?.apply {
                 setExtrasClassLoader(Intent::class.java.classLoader)
             })
         }
@@ -99,9 +99,9 @@ abstract class InHouseScreenRule<T : Activity>(activityClass: Class<T>) : TestRu
             waitForAssertion { Assert.assertEquals(errorMessage, expectedResult, actualResult.resultCode) }
         }
 
-        fun onActivityResultData(action: (Intent) -> Unit) {
+        fun onActivityResultData(action: (Intent?) -> Unit) {
             // Workaround for bug https://github.com/android/android-test/issues/733
-            val data = activity().result.resultData.apply { setExtrasClassLoader(Intent::class.java.classLoader) }
+            val data = activity().result.resultData?.apply { setExtrasClassLoader(Intent::class.java.classLoader) }
             action(data)
         }
     }
