@@ -22,7 +22,7 @@ public abstract class InstrumentationConfiguration(public val name: String) {
 
     public var testRunnerExecutionTimeout: Duration = Duration.ofMinutes(100)
 
-    public var instrumentationTaskTimeout: Duration = Duration.ofMinutes(120)
+    public var instrumentationTaskTimeout: Duration = Duration.ofMinutes(180)
 
     public var enableDeviceDebug: Boolean = false
 
