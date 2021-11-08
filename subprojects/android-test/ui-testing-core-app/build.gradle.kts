@@ -101,7 +101,7 @@ instrumentation {
     } else {
 
         afterEvaluate {
-            tasks.named("check").dependsOn(tasks.named("instrumentationUi"))
+            tasks.named("checkAll").dependsOn(tasks.named("instrumentationUi"))
         }
 
         val emulator22 = CloudEmulator(
