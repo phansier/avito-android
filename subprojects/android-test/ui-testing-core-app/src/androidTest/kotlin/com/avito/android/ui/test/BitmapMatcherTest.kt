@@ -33,6 +33,7 @@ class BitmapMatcherTest {
     @Test
     fun fails_differentImageSize() {
         val image = getDrawable(R.drawable.ic_check_black_24dp).toBitmap()
+        assertThat(true).isFalse()
 
         val error = assertThrows(AssertionError::class.java) {
             Screen.bitmapScreen.imageViewBitmap.checks.withImage(image)
